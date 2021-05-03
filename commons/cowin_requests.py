@@ -2,7 +2,7 @@ import requests
 
 from datetime import date
 from model.resource.available_center import AvailableCenter
-
+from commons.custom_email import send_email
 
 raw_current_date = date.today()
 current_date = raw_current_date.strftime("%d-%m-%Y")
@@ -25,6 +25,7 @@ applicable_age_limit = 45
 
 
 def construct_and_send_email(available_centers):
+    send_email()
     for available_center in available_centers:
         available_center.print_available_center()
 
