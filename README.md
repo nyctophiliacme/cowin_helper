@@ -11,3 +11,8 @@ You can unsubscribe at any point you want, by just replying on the email.
 You will be emailed only when the vaccines are available (No Spams). 
 
 You can enter multiple pincodes, and edit the form any point you want, adding or removing pincodes etc.
+
+### Screenshots
+|  |  |
+| --- | --- |
+|![Email](./screenshots/email.png) | |
