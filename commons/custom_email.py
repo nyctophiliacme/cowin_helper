@@ -13,7 +13,7 @@ def send_email_helper(receiver_address, message_body):
     message = MIMEMultipart()
     message['From'] = sender_address
     message['To'] = receiver_address
-    message['Subject'] = 'A test mail sent by Python. It has an attachment.'
+    message['Subject'] = 'Good news! Covid-19 vaccines are available in your locality'
 
     mail_content = message_body
 
