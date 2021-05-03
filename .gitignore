@@ -136,3 +136,4 @@ dmypy.json
 .pyre/
 
 /secrets.json
+/users.csv
