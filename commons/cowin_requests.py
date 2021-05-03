@@ -14,7 +14,7 @@ def send_vaccine_availabily_if_applicable(user_email_address, user_name, pin_cod
         available_centers.append(check_vaccine_availability_for_age(centers, applicable_age_limit))
 
     if len(available_centers) > 0:
-        construct_and_send_email(available_centers, user_email_address)
+        construct_and_send_email(available_centers, user_email_address, user_name)
 
 
 def make_cowin_api_request(pin_code):
