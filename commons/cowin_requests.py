@@ -25,7 +25,6 @@ def make_cowin_api_request(pin_code):
     require_format = "%d-%m-%Y"
     now_utc = datetime.now(timezone('UTC'))
     now_asia = now_utc.astimezone(timezone('Asia/Kolkata'))
-    print(now_asia.strftime(require_format))
 
     params = {'pincode': pin_code, 'date': now_asia}
     response_raw = requests.get(url=COWIN_URL, params=params)
