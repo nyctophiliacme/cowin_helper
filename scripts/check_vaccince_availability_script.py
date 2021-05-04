@@ -9,6 +9,7 @@ row_number = 1
 with open(file_path) as csv_file:
     csv_reader = csv.DictReader(csv_file, delimiter=',')
     for row in csv_reader:
+        print("Calculating for user: " + row['Email Address'])
         if row['Age'] == '18 - 44':
             applicable_age_limit = 18
         elif row['Age'] == '45+':
