@@ -1,6 +1,7 @@
 import requests
 
-from datetime import date
+from datetime import datetime
+from pytz import timezone
 from model.resource.available_center import AvailableCenter
 from commons.custom_email import send_email_helper
 
@@ -21,10 +22,12 @@ def send_vaccine_availabily_if_applicable(user_email_address, user_name, pin_cod
 
 
 def make_cowin_api_request(pin_code):
-    raw_current_date = date.today()
-    current_date = raw_current_date.strftime("%d-%m-%Y")
+    require_format = "%d-%m-%Y"
+    now_utc = datetime.now(timezone('UTC'))
+    now_asia = now_utc.astimezone(timezone('Asia/Kolkata'))
+    print(now_asia.strftime(require_format))
 
-    params = {'pincode': pin_code, 'date': current_date}
+    params = {'pincode': pin_code, 'date': now_asia}
     response_raw = requests.get(url=COWIN_URL, params=params)
     response = response_raw.json()
 
