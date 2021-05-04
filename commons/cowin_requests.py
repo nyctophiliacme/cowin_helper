@@ -33,11 +33,11 @@ def make_cowin_api_request(pin_code):
 
 def construct_and_send_email(available_centers, receiver_email_address, user_name):
     message_body = construct_email_message(user_name, available_centers)
-    print("Sending email to " + receiver_email_address + "\nBody: " + message_body)
+    print("Sending email to " + receiver_email_address + "\n")
     send_email_helper(receiver_email_address, message_body)
 
 
-def listToString(s):
+def list_to_string(s):
     # initialize an empty string
     str1 = " "
 
@@ -54,10 +54,14 @@ def construct_email_message(user_name, available_centers):
         centers_formatted_data += 'CenterId: ' + str(available_center.center_id) + '\nCenter Name: ' \
                                 + available_center.center_name + '\nAddress: ' + available_center.center_block_name + \
                                 ', ' + available_center.center_district + ', ' + str(available_center.center_pincode) +\
-                                '\nDate(s): ' + listToString(available_center.available_dates) + '\n\n'
+                                '\nDate(s): ' + list_to_string(available_center.available_dates) + '\n\n'
 
-    footer = '''--------
+    footer = '''If you find this useful, feel free to share it to your family and friends: https://forms.gle/NHEmAxLzvkX9Cn35A
+
+--------
 Developed by Pransh Tiwari
+
+Contact me on:
 https://www.linkedin.com/in/pransh-tiwari/
 https://github.com/nyctophiliacme
 https://www.instagram.com/pransh.tiwari/
