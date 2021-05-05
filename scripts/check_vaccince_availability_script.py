@@ -1,5 +1,6 @@
 import csv
 import os
+import time
 from commons.cowin_requests import send_vaccine_availabily_if_applicable
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,3 +22,6 @@ with open(file_path) as csv_file:
 
         send_vaccine_availabily_if_applicable(row['Email Address'], row['Name'], pin_codes, applicable_age_limit)
         row_number += 1
+        if row_number % 100 == 0:
+            print("Calculated for 100 users. Sleeping for a while to throttle requests.")
+            time.sleep(300)
