@@ -8,6 +8,7 @@ file_path = os.path.join(BASE_DIR, 'users.csv')
 row_number = 1
 with open(file_path) as csv_file:
     csv_reader = csv.DictReader(csv_file, delimiter=',')
+    print("-----Starting job-----\n")
     for row in csv_reader:
         print("Calculating for user: " + row['Email Address'])
         if row['Age'] == '18 - 44':
