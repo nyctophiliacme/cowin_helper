@@ -24,4 +24,4 @@ with open(file_path) as csv_file:
         row_number += 1
         if row_number % 100 == 0:
             print("Calculated for 100 users. Sleeping for a while to throttle requests.")
-            time.sleep(300)
+            time.sleep(600)
