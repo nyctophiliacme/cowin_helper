@@ -26,11 +26,28 @@ def make_cowin_api_request(pin_code):
     now_utc = datetime.now(timezone('UTC'))
     now_asia = now_utc.astimezone(timezone('Asia/Kolkata'))
     current_date = now_asia.strftime(require_format)
+    headers_dict = {
+        'authority': 'cdn-api.co-vin.in',
+        'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="90", "Google Chrome";v="90"',
+        'accept': 'application/json, text/plain, */*',
+        'sec-ch-ua-mobile': '?0',
+        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36',
+        'origin': 'https://www.cowin.gov.in',
+        'sec-fetch-site': 'cross-site',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-dest': 'empty',
+        'referer': 'https://www.cowin.gov.in/',
+        'accept-language': 'en-US,en;q=0.9',
+        'if-none-match': 'W/"1ea-+zg9RS/0KwlL1TNVSKyRx9gaUO0"',
+    }
 
     params = {'pincode': pin_code, 'date': current_date}
-    response_raw = requests.get(url=COWIN_URL, params=params)
+    response_raw = requests.get(url=COWIN_URL, params=params, headers=headers_dict)
+    if response_raw.status_code == 304:
+        print('Received 304 response')
+        return None
     response = response_raw.json()
-
+    # print(response)
     return response['centers']
 
 
@@ -75,6 +92,8 @@ https://www.instagram.com/pransh.tiwari/
 
 def check_vaccine_availability_for_age(centers, applicable_age_limit):
     available_center_list = []
+    if centers is None:
+        return available_center_list
 
     for center in centers:
         # print(center['center_id'])
