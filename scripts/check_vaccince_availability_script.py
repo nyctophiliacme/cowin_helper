@@ -19,9 +19,10 @@ with open(file_path) as csv_file:
 
         raw_pin_codes_list = row['Pin Code(s)'].split(',')
         pin_codes = [int(raw_pin_code) for raw_pin_code in raw_pin_codes_list]
+        pin_codes_set = set(pin_codes)
 
-        send_vaccine_availabily_if_applicable(row['Email Address'], row['Name'], pin_codes, applicable_age_limit)
+        send_vaccine_availabily_if_applicable(row['Email Address'], row['Name'], pin_codes_set, applicable_age_limit)
         row_number += 1
         if row_number % 100 == 0:
             print("Calculated for 100 users. Sleeping for a while to throttle requests.")
-            time.sleep(600)
+            time.sleep(480)
