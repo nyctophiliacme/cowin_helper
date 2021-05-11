@@ -77,7 +77,12 @@ def construct_email_message(user_name, available_centers):
                                   + ', ' + str(available_center.center_pincode) +\
                                 '\nDate(s): ' + list_to_string(available_center.available_dates) + '\n\n'
 
-    footer = '''If you find this useful, feel free to share it to your family and friends: https://forms.gle/NHEmAxLzvkX9Cn35A
+    footer = '''Visit https://www.cowin.gov.in/ to book your slots. 
+
+If you find this useful, feel free to share it to your family and friends: https://forms.gle/NHEmAxLzvkX9Cn35A
+
+Received the first dose, and wish to pause the email alerts? Just reply 'Unsubscribe' to this email.
+You'll be able to resume the email alerts, by replying 'Subscribe' again.
 
 --------
 Developed by Pransh Tiwari
