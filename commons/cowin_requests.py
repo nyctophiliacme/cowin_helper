@@ -72,8 +72,9 @@ def construct_email_message(user_name, available_centers):
     for available_center in available_centers:
         # available_center.print_available_center()
         centers_formatted_data += 'CenterId: ' + str(available_center.center_id) + '\nCenter Name: ' \
-                                + available_center.center_name + '\nAddress: ' + available_center.center_block_name + \
-                                ', ' + available_center.center_district + ', ' + str(available_center.center_pincode) +\
+                                + available_center.center_name + '\nAddress: ' + available_center.center_address + \
+                                  ', ' + available_center.center_block_name + ', ' + available_center.center_district \
+                                  + ', ' + str(available_center.center_pincode) +\
                                 '\nDate(s): ' + list_to_string(available_center.available_dates) + '\n\n'
 
     footer = '''If you find this useful, feel free to share it to your family and friends: https://forms.gle/NHEmAxLzvkX9Cn35A
@@ -109,7 +110,8 @@ def check_vaccine_availability_for_age(centers, applicable_age_limit):
 
         if len(available_dates) > 0:
             avaible_center_obj = AvailableCenter(center['center_id'], center['name'], center['district_name'],
-                                                 center['block_name'], center['pincode'], available_dates)
+                                                 center['block_name'], center['address'], center['pincode'],
+                                                 available_dates)
             available_center_list.append(avaible_center_obj)
             # avaible_center_obj.print_available_center()
             # print(available_dates)
