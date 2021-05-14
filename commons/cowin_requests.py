@@ -90,7 +90,7 @@ Developed by Pransh Tiwari
 Contact me on:
 https://www.linkedin.com/in/pransh-tiwari/
 https://github.com/nyctophiliacme
-https://www.instagram.com/pransh.tiwari/
+Personal email: pransh.mail@gmail.com
 --------'''
 
     return header + centers_formatted_data + footer
