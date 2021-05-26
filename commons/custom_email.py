@@ -22,9 +22,12 @@ def send_email_helper(receiver_address, message_body):
 
 
 def send_email_common(message, sender_address, sender_pass, receiver_address):
-    session = smtplib.SMTP(EMAIL_HOST, EMAIL_PORT)
-    session.starttls()
-    session.login(sender_address, sender_pass)
-    text = message.as_string()
-    session.sendmail(sender_address, receiver_address, text)
-    session.quit()
+    try:
+        session = smtplib.SMTP(EMAIL_HOST, EMAIL_PORT)
+        session.starttls()
+        session.login(sender_address, sender_pass)
+        text = message.as_string()
+        session.sendmail(sender_address, receiver_address, text)
+        session.quit()
+    except:
+        print("Exception while sending email to" + sender_address)

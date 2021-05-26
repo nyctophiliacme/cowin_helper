@@ -1,6 +1,8 @@
 import csv
 import os
 import time
+from datetime import datetime
+from pytz import timezone
 from commons.cowin_requests import send_vaccine_availabily_if_applicable
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -9,7 +11,11 @@ file_path = os.path.join(BASE_DIR, 'users.csv')
 row_number = 1
 with open(file_path) as csv_file:
     csv_reader = csv.DictReader(csv_file, delimiter=',')
-    print("-----Starting job-----\n")
+    require_format = "%d/%m/%Y %H:%M:%S"
+    now_utc = datetime.now(timezone('UTC'))
+    now_asia = now_utc.astimezone(timezone('Asia/Kolkata'))
+    current_date = now_asia.strftime(require_format)
+    print("-----Starting job-----\n" + current_date)
     for row in csv_reader:
         print("Calculating for user: " + row['Email Address'])
         if row['Age'] == '18 - 44':
@@ -25,4 +31,4 @@ with open(file_path) as csv_file:
         row_number += 1
         if row_number % 100 == 0:
             print("Calculated for 100 users. Sleeping for a while to throttle requests.")
-            time.sleep(480)
+            time.sleep(420)

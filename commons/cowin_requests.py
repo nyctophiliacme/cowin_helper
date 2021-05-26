@@ -42,13 +42,17 @@ def make_cowin_api_request(pin_code):
     }
 
     params = {'pincode': pin_code, 'date': current_date}
-    response_raw = requests.get(url=COWIN_URL, params=params, headers=headers_dict)
-    if response_raw.status_code == 304:
-        print('Received 304 response')
+    try:
+        response_raw = requests.get(url=COWIN_URL, params=params, headers=headers_dict)
+        if response_raw.status_code == 304:
+            print('Received 304 response')
+            return None
+        response = response_raw.json()
+        # print(response)
+        return response['centers']
+    except:
+        print("Exception while calling Cowin API")
         return None
-    response = response_raw.json()
-    # print(response)
-    return response['centers']
 
 
 def construct_and_send_email(available_centers, receiver_email_address, user_name):
